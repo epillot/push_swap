@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lst_swap_cnt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 14:04:53 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 18:17:34 by epillot          ###   ########.fr       */
+/*   Created: 2017/01/27 14:38:28 by epillot           #+#    #+#             */
+/*   Updated: 2017/01/27 14:39:27 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	ft_lst_swap_cnt(t_list *elem1, t_list *elem2)
 {
-	t_list	*elem;
+	void	*tmp;
 
-	if (*alst)
-	{
-		elem = *alst;
-		(*del)(elem->content, elem->content_size);
-		free(*alst);
-		*alst = NULL;
-	}
+	tmp = elem1->content;
+	elem1->content = elem2->content;
+	elem2->content = tmp;
 }

@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 14:04:53 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 18:17:34 by epillot          ###   ########.fr       */
+/*   Created: 2017/01/27 17:28:35 by epillot           #+#    #+#             */
+/*   Updated: 2017/01/27 18:33:32 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "checker.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	bubble_sort(t_list *l)
 {
-	t_list	*elem;
+	int		nb_swap;
+	t_list	*tmp;
 
-	if (*alst)
+	nb_swap = 1;
+	while (nb_swap != 0)
 	{
-		elem = *alst;
-		(*del)(elem->content, elem->content_size);
-		free(*alst);
-		*alst = NULL;
+		nb_swap = 0;
+		tmp = l;
+		while (tmp->next)
+		{
+			if (VALUE(tmp) > VALUE(tmp->next))
+			{
+				ft_lst_swap_cnt(tmp, tmp->next);
+				nb_swap++;
+			}
+			tmp = tmp->next;
+		}
 	}
 }

@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lst_insert.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 14:04:53 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 18:17:34 by epillot          ###   ########.fr       */
+/*   Created: 2017/01/31 18:31:04 by epillot           #+#    #+#             */
+/*   Updated: 2017/01/31 18:32:40 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	ft_lst_insert(t_list **list, t_list *elem, int pos)
 {
-	t_list	*elem;
+	t_list	*tmp;
 
-	if (*alst)
+	if (pos == 1)
+		ft_lstadd(list, elem);
+	else
 	{
-		elem = *alst;
-		(*del)(elem->content, elem->content_size);
-		free(*alst);
-		*alst = NULL;
+		tmp = ft_lst_at(*list, pos - 1);
+		if (tmp)
+		{
+			elem->next = tmp->next;
+			tmp->next = elem;
+		}
 	}
 }

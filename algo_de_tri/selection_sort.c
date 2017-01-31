@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   selection_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 14:04:53 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 18:17:34 by epillot          ###   ########.fr       */
+/*   Created: 2017/01/27 14:09:44 by epillot           #+#    #+#             */
+/*   Updated: 2017/01/31 15:33:15 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "checker.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+static t_list	*find_lst_min(t_list *l)
 {
-	t_list	*elem;
+	t_list	*min;
 
-	if (*alst)
+	min = l;
+	l = l->next;
+	while (l)
 	{
-		elem = *alst;
-		(*del)(elem->content, elem->content_size);
-		free(*alst);
-		*alst = NULL;
+		if (VALUE(min) > VALUE(l))
+			min = l;
+		l = l->next;
+	}
+	return (min);
+}
+
+void			selection_sort(t_list *l)
+{
+	t_list *min;
+
+	while (l)
+	{
+		min = find_lst_min(l);
+		if (l != min)
+			ft_lst_swap_cnt(l, min);
+		l = l->next;
 	}
 }

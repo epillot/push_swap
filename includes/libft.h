@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 10:17:48 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/25 19:16:40 by epillot          ###   ########.fr       */
+/*   Updated: 2017/01/26 14:10:00 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include "ft_printf.h"
+# include <limits.h>
 
 typedef unsigned char	t_byte;
 

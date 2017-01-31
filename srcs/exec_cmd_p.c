@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   exec_cmd_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 14:04:53 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 18:17:34 by epillot          ###   ########.fr       */
+/*   Created: 2017/01/26 12:56:35 by epillot           #+#    #+#             */
+/*   Updated: 2017/01/26 15:11:31 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+static void	exec_push(t_list **on, t_list **from)
 {
-	t_list	*elem;
+	t_list	*tmp;
+	if (!*from)
+		return ;
+	tmp = ft_lstnew((*from)->content, sizeof(int));
+	if (*on)
+		ft_lstadd(on, tmp);
+	else
+		*on = tmp;
+	tmp = *from;
+	*from = (*from)->next;
+	free(tmp);
+}
 
-	if (*alst)
-	{
-		elem = *alst;
-		(*del)(elem->content, elem->content_size);
-		free(*alst);
-		*alst = NULL;
-	}
+void		exec_cmd_p(char *cmd, t_list **la, t_list **lb)
+{
+	if (*cmd == 'a')
+		exec_push(la, lb);
+	else
+		exec_push(lb, la);
 }

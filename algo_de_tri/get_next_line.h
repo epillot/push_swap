@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 14:04:53 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 18:17:34 by epillot          ###   ########.fr       */
+/*   Created: 2016/11/18 17:23:35 by epillot           #+#    #+#             */
+/*   Updated: 2017/01/25 15:21:39 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+# define GET_NEXT_LINE_H
+
+# define BUFF_SIZE 2
+
+typedef struct	s_buffer
 {
-	t_list	*elem;
+	char			*to_add;
+	char			*buf_read;
+	int				size_to_add;
+	int				current_size_line;
+	int				fd;
+	struct s_buffer *next;
+	struct s_buffer *prev;
+}				t_buffer;
 
-	if (*alst)
-	{
-		elem = *alst;
-		(*del)(elem->content, elem->content_size);
-		free(*alst);
-		*alst = NULL;
-	}
-}
+int				get_next_line(const int fd, char **line);
+
+#endif

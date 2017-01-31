@@ -6,7 +6,7 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:38:05 by epillot           #+#    #+#              #
-#    Updated: 2017/01/25 19:24:27 by epillot          ###   ########.fr        #
+#    Updated: 2017/01/31 18:34:34 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,9 @@ SRC_LST_NAME =	ft_lstadd.c\
 				ft_lstnew.c\
 				ft_lstmap.c\
 				ft_lst_size.c\
+				ft_lst_at.c\
+				ft_lst_swap_cnt.c\
+				ft_lst_insert.c\
 
 SRC_MEM_NAME =	ft_bzero.c\
 				ft_memalloc.c\
