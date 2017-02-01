@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tri.h                                              :+:      :+:    :+:   */
+/*   ft_lstfree_cnt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/26 16:29:15 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/01 19:13:30 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/01 13:24:06 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/01 13:25:04 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRI_H
+#include "libft.h"
 
-# define TRI_H
-
-# include <stdlib.h>
-# include <time.h>
-# include <stdio.h>
-
-# define TOT 100000
-
-void    tri_par_selection(int *tab, int size);
-
-#endif
+void	ft_lstfree_cnt(void *content, size_t content_size)
+{
+	(void)content_size;
+	free(content);
+}

@@ -6,14 +6,14 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 15:09:44 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/31 19:59:47 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/01 13:38:48 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker.h"
 
-static void	insert_elem(t_list **l, t_list *elem)//, int size)
+static void	insert_elem(t_list **l, t_list *elem)
 {
 	int		i;
 	t_list	*tmp;
@@ -36,40 +36,7 @@ static void	insert_elem(t_list **l, t_list *elem)//, int size)
 		ft_lstadd(l, elem);
 }
 
-void    print_l(t_list *l);
-
-void	del(void *content, size_t content_size)
-{
-	(void)content_size;
-	free(content);
-}
-
-/*void		insertion_sort(t_list **l)
-{
-	t_list	*sortedlist;
-	t_list	*tmplist;
-	t_list	*tmp;
-	int		size;
-
-	if (!*l)
-		return ;
-	sortedlist = ft_lstnew((*l)->content, sizeof(int));
-	tmplist = (*l)->next;
-	size = 1;
-	while (tmplist)
-	{
-		tmp = ft_lstnew(tmplist->content, sizeof(int));
-		insert_elem(&sortedlist, tmp, size);
-		//	print_l(sortedlist);
-		size++;
-		tmplist = tmplist->next;
-	}
-	ft_lstdel(l, del);
-	*l = sortedlist;
-}*/
-
-
-void		insertion_sort(t_list **l)
+void		insertion_sort(t_list **l, int (*cmp)(t_list *, t_list *))
 {
 	t_list	*tmplist;
 	t_list	*tmp;
@@ -77,22 +44,15 @@ void		insertion_sort(t_list **l)
 	if (!*l)
 		return ;
 	tmplist = *l;
-//	ft_putchar('\n');
 	while (tmplist->next)
 	{
-		if (VALUE(tmplist) > VALUE(tmplist->next))
+		if ((*cmp)(tmplist, tmplist->next) > 0)
 		{
 			tmp = tmplist->next;
 			tmplist->next = tmp->next;
-//			ft_printf("on prend le maillon: %d\n", VALUE(tmp));
-//			print_l(*l);
-//			ft_printf("on l'insert avec size = %d\n", size);
 			insert_elem(l, tmp);
-//			print_l(*l);
-//			ft_putchar('\n');
 		}
 		else	
 			tmplist = tmplist->next;
-	//	tmplist = ft_lst_at(*l, size);
 	}
 }

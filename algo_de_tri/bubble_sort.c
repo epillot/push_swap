@@ -6,14 +6,14 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 17:28:35 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/27 18:33:32 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/01 14:02:58 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker.h"
 
-void	bubble_sort(t_list *l)
+void	bubble_sort(t_list *l, int (*cmp)(t_list *, t_list *))
 {
 	int		nb_swap;
 	t_list	*tmp;
@@ -25,7 +25,7 @@ void	bubble_sort(t_list *l)
 		tmp = l;
 		while (tmp->next)
 		{
-			if (VALUE(tmp) > VALUE(tmp->next))
+			if ((*cmp)(tmp, tmp->next) > 0)
 			{
 				ft_lst_swap_cnt(tmp, tmp->next);
 				nb_swap++;
