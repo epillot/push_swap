@@ -6,34 +6,29 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 13:15:36 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/26 16:14:19 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/02 16:59:05 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-static void	exec_rot(t_list **l)
-{
-	t_list	*tmp;
-
-	if (!*l)
-		return ;
-	tmp = ft_lstnew((*l)->content, sizeof(int));
-	ft_lstadd_back(*l, tmp);
-	tmp = *l;
-	*l = (*l)->next;
-	free(tmp);
-}
-
-void		exec_cmd_r(char *cmd, t_list **la, t_list **lb)
+void		exec_cmd_r(char *cmd, t_ll **la, t_ll **lb)
 {
 	if (*cmd == 'a')
-		exec_rot(la);
+	{
+		if (*la)
+			*la = (*la)->next;
+	}
 	else if (*cmd == 'b')
-		exec_rot(lb);
+	{
+		if (*lb)
+			*lb = (*lb)->next;
+	}
 	else
 	{
-		exec_rot(la);
-		exec_rot(lb);
+		if (*la)
+			*la = (*la)->next;
+		if (*lb)
+			*lb = (*lb)->next;
 	}
 }

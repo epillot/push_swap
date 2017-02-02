@@ -6,7 +6,7 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 15:38:05 by epillot           #+#    #+#              #
-#    Updated: 2017/02/01 13:26:01 by epillot          ###   ########.fr        #
+#    Updated: 2017/02/02 19:52:33 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ SRC_LST_NAME =	ft_lstadd.c\
 				ft_lst_at.c\
 				ft_lst_swap_cnt.c\
 				ft_lst_insert.c\
-				ft_lstfree_cnt.c\
 
 SRC_MEM_NAME =	ft_bzero.c\
 				ft_memalloc.c\
@@ -151,12 +150,12 @@ OBJ_PATH = obj/
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 			
-all: $(NAME)
-
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(NAME) created"
+
+all: $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_STR_PATH)%.c
 	@mkdir -p obj

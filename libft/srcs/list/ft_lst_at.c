@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 14:14:47 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/01 16:58:02 by epillot          ###   ########.fr       */
+/*   Updated: 2017/01/31 17:19:37 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lst_at(t_list *lst, int nb)
 {
-	if (nb <= 0)
+	if (!nb)
 		return (NULL);
 	while (nb != 1 && lst)
 	{

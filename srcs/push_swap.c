@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd_p.c                                       :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/26 12:56:35 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 17:01:04 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/02 17:43:34 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/02 19:30:18 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	exec_push(t_ll **on, t_ll **from)
+int		main(int ac, char **av)
 {
-	t_ll	*tmp;
+	t_ll	*la;
+	t_ll	*lb;
+//	char	**cmd;
 
-	if (!*from)
-		return ;
-	tmp = *from;
-	if ((*from)->size > 1)
+	if (ac < 2)
+		return (0);
+	if (!(check_error_param(ac, av)))
 	{
-		(*from)->prev->next = (*from)->next;
-		(*from)->next->prev = (*from)->prev;
-		(*from) = (*from)->next;
-		ll_size_rec(*from, (*from)->size - 1);
+		ft_putendl_fd("Error", 2);
+		return (1);
 	}
-	else
-		(*from) = NULL;
-	ll_addfront(on, tmp);
-}
-
-void		exec_cmd_p(char *cmd, t_ll **la, t_ll **lb)
-{
-	if (*cmd == 'a')
-		exec_push(la, lb);
-	else
-		exec_push(lb, la);
+	la = NULL;
+	lb = NULL;
+//	cmd = NULL;
+	init_la(ac, av, &la);
+	pu_sw_bubble_sort(la);
+//	print_cmd(cmd);
+	return (0);
 }

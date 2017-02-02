@@ -6,13 +6,13 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:45:56 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/26 15:24:58 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/02 16:44:15 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
-void	exec_cmd(char *cmd, t_list **la, t_list **lb)
+void	exec_cmd(char *cmd, t_ll **la, t_ll **lb)
 {
 	if (*cmd == 's')
 		exec_cmd_s(cmd + 1, *la, *lb);

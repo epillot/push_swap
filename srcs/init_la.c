@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd_p.c                                       :+:      :+:    :+:   */
+/*   init_la.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/26 12:56:35 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 17:01:04 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/02 17:58:44 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/02 18:01:03 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	exec_push(t_ll **on, t_ll **from)
+void	init_la(int ac, char **av, t_ll **la)
 {
-	t_ll	*tmp;
+	int		i;
+	t_ll	*elem;
 
-	if (!*from)
-		return ;
-	tmp = *from;
-	if ((*from)->size > 1)
+	i = 1;
+	while (i < ac)
 	{
-		(*from)->prev->next = (*from)->next;
-		(*from)->next->prev = (*from)->prev;
-		(*from) = (*from)->next;
-		ll_size_rec(*from, (*from)->size - 1);
+		elem = ll_new(ft_atoi(av[i]));
+		if (*la)
+			ll_addback(*la, elem);
+		else
+			*la = elem;
+		i++;
 	}
-	else
-		(*from) = NULL;
-	ll_addfront(on, tmp);
-}
-
-void		exec_cmd_p(char *cmd, t_ll **la, t_ll **lb)
-{
-	if (*cmd == 'a')
-		exec_push(la, lb);
-	else
-		exec_push(lb, la);
 }
