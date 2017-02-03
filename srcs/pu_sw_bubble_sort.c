@@ -30,13 +30,16 @@ void	pu_sw_bubble_sort(t_ll *l)//, char ***cmd)
 				ll_swap(l);
 				ft_putendl("sa");
 			}
+			if (l_is_sort(l, 0))
+				break ;
 			l = l->next;
 			ft_putendl("ra");
 			i++;
 		}
-		l = l->next;
-		ft_putendl("ra");
-		l = l->next;
-		ft_putendl("ra");
+		if (!(l_is_sort(l, 0)))
+		{
+			l = l->next;
+			ft_putendl("ra");
+		}
 	}
 }
