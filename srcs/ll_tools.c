@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 13:39:36 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 17:41:40 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/03 16:01:31 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_ll	*ll_new(int n)
 	t_ll	*output;
 
 	if (!(output = ft_memalloc(sizeof(t_ll))))
-		return (NULL);
+		exit(EXIT_FAILURE);
 	output->val = n;
 	output->size = 1;
 	output->next = output;

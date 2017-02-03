@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error_param.c                                :+:      :+:    :+:   */
+/*   check_double.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/02 18:02:16 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 18:04:05 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/03 16:05:08 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/03 16:31:21 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		check_error_param(int ac, char **av)
+int		check_double(t_ll *l)
 {
-	int		i;
-	int		j;
-	long	arg;
-	long	prev;
+	int		size;
+	int		size2;
+	t_ll	*tmp;
+	int		val;
+	int 	i;
 
+	size = l->size;
 	i = 1;
-	prev = 2147483648;
-	while (i < ac)
+	while (i <= size)
 	{
-		j = 0;
-		while (av[i][j])
+		val = l->val;
+		tmp = l->next;
+		size2 = size - i;
+		while (size2--)
 		{
-			if (!ft_isdigit(av[i][j]))
+			if (val == tmp->val)
 				return (0);
-			j++;
+			tmp = tmp->next;
 		}
-		if ((arg = ft_atol(av[i])) > INT_MAX || arg < INT_MIN)
-			return (0);
-		if (prev == arg)
-			return (0);
-		prev = arg;
 		i++;
+		l = l->next;
 	}
 	return (1);
 }

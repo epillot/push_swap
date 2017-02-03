@@ -6,7 +6,7 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/04 16:40:08 by epillot           #+#    #+#              #
-#    Updated: 2017/02/02 19:33:51 by epillot          ###   ########.fr        #
+#    Updated: 2017/02/03 19:41:30 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ NAME2 = push_swap
 
 FLAG = -Wall -Wextra -Werror
 
-SRC_NAME =  check_error_param.c\
-			init_la.c\
+SRC_NAME =  init_la.c\
+			check_double.c\
 			ll_tools.c\
 			l_is_sort.c\
 			exec_cmd.c\
@@ -26,6 +26,7 @@ SRC_NAME =  check_error_param.c\
 			exec_cmd_rr.c\
 			exec_cmd_s.c\
 			pu_sw_bubble_sort.c\
+			pu_sw_sel_sort.c\
 
 MAIN1_NAME = checker.c
 
@@ -48,11 +49,11 @@ INC = ./includes/
 all: $(NAME1) $(NAME2)
 
 $(NAME1): $(OBJ) $(MAIN1_OBJ)
-	make -C libft/
+	@make -C libft/
 	gcc $(FLAG) -o $(NAME1) $(OBJ) $(MAIN1_OBJ) -I $(INC) -L ./libft/ -lft
 	
 $(NAME2): $(OBJ) $(MAIN2_OBJ)
-	make -C libft/
+	@make -C libft/
 	gcc $(FLAG) -o $(NAME2) $(OBJ) $(MAIN2_OBJ) -I $(INC) -L ./libft/ -lft
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
@@ -60,7 +61,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	gcc $(FLAG) -c -I $(INC) $< -o $@
 
 clean:
-	make fclean -C libft/
+	@make fclean -C libft/
 	/bin/rm -f $(OBJ) $(MAIN2_OBJ) $(MAIN1_OBJ)
 
 fclean: clean

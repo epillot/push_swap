@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 17:02:40 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 18:45:59 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/03 19:27:02 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	check_error_cmd(char *cmd)
 	return (0);
 }
 
-static void	print_list(t_ll *l)
+/*static void	print_list(t_ll *l)
 {
 	int size;
 
@@ -55,24 +55,24 @@ static void	print_list(t_ll *l)
 		l = l->next;
 	}
 	ft_putchar('\n');
-}
+}*/
 
 int			main(int ac, char **av)
 {
 	t_ll	*la;
 	t_ll	*lb;
 	char	*cmd;
+	int i = 0;
 
 	if (ac < 2)
 		return (0);
-	if (!(check_error_param(ac, av)))
+	la = NULL;
+	lb = NULL;
+	if (!(init_la(ac, av, &la)) || !(check_double(la)))
 	{
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	la = NULL;
-	lb = NULL;
-	init_la(ac, av, &la);
 	while (get_next_line(0, &cmd) > 0)
 	{
 		if (!(check_error_cmd(cmd)))
@@ -82,13 +82,17 @@ int			main(int ac, char **av)
 		}
 		else
 		{
+			i++;
+		//	ft_printf("-------coup %d: %s-------\n", i, cmd);
 			exec_cmd(cmd, &la, &lb);
-			ft_putstr("la: ");
+		/*	ft_putstr("la: ");
 			print_list(la);
 			ft_putstr("lb: ");
 			print_list(lb);
+			ft_putchar('\n');*/
 		}
 	}
+	ft_printf("push_swap send a programm with %d instructuons\n", i);
 	ft_putendl(l_is_sort(la, 0) && !lb ? "OK" : "KO");
 	return (0);
 }
