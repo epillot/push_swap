@@ -20,6 +20,8 @@ int		check_double(t_ll *l)
 	int		val;
 	int 	i;
 
+	if (!l)
+		return (0);
 	size = l->size;
 	i = 1;
 	while (i <= size)

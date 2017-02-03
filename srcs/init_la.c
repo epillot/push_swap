@@ -78,6 +78,8 @@ int			init_la(int ac, char **av, t_ll **la)
 		j = 0;
 		if (!(param = ft_split_whitespace(av[i])))
 			return (0);
+		if (!*param)
+			return (0);
 		while (param[j])
 		{
 			if ((nb_parser(param[j])))
