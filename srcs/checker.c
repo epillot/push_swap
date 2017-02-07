@@ -39,7 +39,7 @@ static int	check_error_cmd(char *cmd)
 	return (0);
 }
 
-/*static void	print_list(t_ll *l)
+static void	print_list(t_ll *l)
 {
 	int size;
 
@@ -55,7 +55,7 @@ static int	check_error_cmd(char *cmd)
 		l = l->next;
 	}
 	ft_putchar('\n');
-}*/
+}
 
 int			main(int ac, char **av)
 {
@@ -73,6 +73,8 @@ int			main(int ac, char **av)
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
+	print_list(la);
+	ft_putchar('\n');
 	while (get_next_line(0, &cmd) > 0)
 	{
 		if (!(check_error_cmd(cmd)))
@@ -83,13 +85,13 @@ int			main(int ac, char **av)
 		else
 		{
 			i++;
-		//	ft_printf("-------coup %d: %s-------\n", i, cmd);
+			ft_printf("-------coup %d: %s-------\n", i, cmd);
 			exec_cmd(cmd, &la, &lb);
-		/*	ft_putstr("la: ");
+			ft_putstr("la: ");
 			print_list(la);
 			ft_putstr("lb: ");
 			print_list(lb);
-			ft_putchar('\n');*/
+			ft_putchar('\n');
 		}
 	}
 	ft_printf("push_swap send a programm with %d instructuons\n", i);

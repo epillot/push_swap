@@ -42,5 +42,6 @@ void	exec_cmd_r(char *cmd, t_ll **la, t_ll **lb);
 void	exec_cmd_rr(char *cmd, t_ll **la, t_ll **lb);
 void	pu_sw_bubble_sort(t_ll *l);
 void	pu_sw_sel_sort(t_ll **la, t_ll **lb);
+void	pu_sw_ins_sort(t_ll **la, t_ll **lb);
 
 #endif

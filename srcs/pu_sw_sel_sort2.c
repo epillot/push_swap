@@ -42,7 +42,7 @@ void		pu_sw_sel_sort(t_ll **la, t_ll **lb)
 {
 	int		pos_min;
 	int		size;
-//	int		diff;
+	int		diff;
 //	int		i;
 
 //	i = 1;
@@ -50,7 +50,24 @@ void		pu_sw_sel_sort(t_ll **la, t_ll **lb)
 	while (size > 1)
 	{
 		pos_min = find_ll_min(*la);
-		ll_go_to(la, 1, pos_min, 'a');
+		if ((diff = size - pos_min) >= size / 2)
+		{
+			while (diff < size - 1)
+			{
+				*la = (*la)->next;
+				ft_putendl("ra");
+				diff++;
+			}
+		}
+		else
+		{
+			while (diff >= 0)
+			{
+				*la = (*la)->prev;
+				ft_putendl("rra");
+				diff--;
+			}
+		}
 		exec_cmd_p("b", la, lb);
 		ft_putendl("pb");
 		size--;

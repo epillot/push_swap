@@ -12,7 +12,7 @@
 
 NAME1 = checker
 
-NAME2 = push_swap
+NAME2 = push_swap_bub2
 
 FLAG = -Wall -Wextra -Werror
 
@@ -27,6 +27,7 @@ SRC_NAME =  init_la.c\
 			exec_cmd_s.c\
 			pu_sw_bubble_sort.c\
 			pu_sw_sel_sort.c\
+			pu_sw_ins_sort.c\
 
 MAIN1_NAME = checker.c
 
