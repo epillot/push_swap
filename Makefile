@@ -6,18 +6,21 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/04 16:40:08 by epillot           #+#    #+#              #
-#    Updated: 2017/02/03 19:41:30 by epillot          ###   ########.fr        #
+#    Updated: 2017/02/08 20:00:45 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME1 = checker
 
-NAME2 = push_swap_bub2
+NAME2 = push_swap
 
 FLAG = -Wall -Wextra -Werror
 
 SRC_NAME =  init_la.c\
+			get_option_pu_sw.c\
 			check_double.c\
+			get_cmd_list.c\
+			exec_all.c\
 			ll_tools.c\
 			l_is_sort.c\
 			exec_cmd.c\
@@ -25,9 +28,10 @@ SRC_NAME =  init_la.c\
 			exec_cmd_r.c\
 			exec_cmd_rr.c\
 			exec_cmd_s.c\
+			ll_go_to.c\
+			add_cmd_in_list.c\
 			pu_sw_bubble_sort.c\
 			pu_sw_sel_sort.c\
-			pu_sw_ins_sort.c\
 
 MAIN1_NAME = checker.c
 

@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:22:45 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/03 19:41:06 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/08 20:17:15 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,30 @@ static int	find_ll_min(t_ll *l)
 	return (pos_min);
 }
 
-int      ll_go_to(t_ll **l, int pos_start, int pos_fin, char c);
-
-void		pu_sw_sel_sort(t_ll **la, t_ll **lb)
+t_list		*pu_sw_sel_sort(t_ll **la, t_ll **lb)
 {
-	int		pos_min;
+	t_pos	pos;
 	int		size;
-//	int		diff;
-//	int		i;
+	t_list	*cmd;
 
-//	i = 1;
+	cmd = NULL;
 	size = (*la)->size;
+	pos.start = 1;
 	while (size > 1)
 	{
-		pos_min = find_ll_min(*la);
-		ll_go_to(la, 1, pos_min, 'a');
+		pos.final = find_ll_min(*la);
+		ll_go_to(la, pos, "a", &cmd);
 		exec_cmd_p("b", la, lb);
-		ft_putendl("pb");
+		add_cmd_in_list("p", "b", &cmd);
 		size--;
 	}
-	size = (*lb)->size;
+	size = 0;
+	if (*lb)
+		size = (*lb)->size;
 	while (size--)
 	{
 		exec_cmd_p("a", la, lb);
-		ft_putendl("pa");
+		add_cmd_in_list("p", "a", &cmd);
 	}
+	return (cmd);
 }

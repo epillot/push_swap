@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 17:58:44 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/03 16:22:00 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/08 18:01:04 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_int(char *param, int neg)
 		free(limit);
 		return (1);
 	}
-	return (0);
+	exit(EXIT_FAILURE);
 }
 
 static int	nb_parser(char *param)
@@ -72,12 +72,12 @@ int			init_la(int ac, char **av, t_ll **la)
 	t_ll	*elem;
 	char	**param;
 
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		j = 0;
 		if (!(param = ft_split_whitespace(av[i])))
-			return (0);
+			exit(EXIT_FAILURE);
 		if (!*param)
 			return (0);
 		while (param[j])

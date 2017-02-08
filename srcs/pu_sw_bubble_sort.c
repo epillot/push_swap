@@ -6,48 +6,64 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 18:06:19 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 19:47:23 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/08 20:15:19 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pu_sw_bubble_sort(t_ll *l)//, char ***cmd)
+void	bub_sort_next(t_ll *l, int size, t_list **cmd)
+{
+	int		i;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (l->val > l->next->val)
+		{
+			ll_swap(l);
+			add_cmd_in_list("s", "a", cmd);
+		}
+		l = l->next;
+		add_cmd_in_list("r", "a", cmd);
+		i++;
+	}
+	
+}
+
+void	bub_sort_prev(t_ll *l, int size, t_list **cmd)
+{
+	int		i;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		l = l->prev;
+		add_cmd_in_list("rr", "a", cmd);
+		if (l->val > l->next->val)
+		{
+			ll_swap(l);
+			add_cmd_in_list("s", "a", cmd);
+		}
+		i++;
+	}
+}
+
+t_list	*pu_sw_bubble_sort(t_ll *l)
 {
 	int		size;
-	int		i, j;
-	t_ll		*begin;
+	t_ll	*begin;
+	t_list	*cmd;
 
 	size = l->size;
+	if (size < 2)
+		return (NULL);
 	begin = l;
-	j = 1;
+	cmd = NULL;
 	while (!(l_is_sort(begin, 0)))
 	{
-		i = 0;
-		while (i < size - j)
-		{
-			if (l->val > l->next->val)
-			{
-				ll_swap(l);
-				ft_putendl("sa");
-			}
-			l = l->next;
-			ft_putendl("ra");
-			i++;
-		}
-		i = 0;
-		while (i < size - j)
-                {
-			l = l->prev;
-			ft_putendl("rra");
-                        if (l->val > l->next->val)
-                        {
-                                ll_swap(l);
-                                ft_putendl("sa");
-                        }
-                        l = l->next;
-                        i++;
-                }
-		j++;
+		bub_sort_next(l, size, &cmd);
+		bub_sort_prev(l->prev, size, &cmd);
 	}
+	return (cmd);
 }

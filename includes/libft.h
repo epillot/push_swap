@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 10:17:48 by epillot           #+#    #+#             */
-/*   Updated: 2017/01/26 14:10:00 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/08 19:59:15 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 int					ft_lst_size(t_list *list);
+t_list				*ft_lst_at(t_list *lst, int nb);
+void				ft_lst_insert(t_list **list, t_list *elem, int pos);
+void				ft_lst_swap_cnt(t_list *elem1, t_list *elem2);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+void				ft_lstfree_cnt(void *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_strsplit_lst(char const *s, char c);
 void				ft_putnbr_base(int n, char *base);
