@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_size.c                                      :+:      :+:    :+:   */
+/*   ll_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/25 19:12:15 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 17:40:29 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/09 12:37:15 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/09 14:20:17 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int		ft_lst_size(t_list *list)
+void	ll_free(t_ll **l)
 {
-	int		ret;
+	t_ll	*tmp1;
+	t_ll	*tmp2;
+	int		size;
 
-	ret = 0;
-	while (list)
+	if (!*l)
+		return ;
+	size = (*l)->size;
+	tmp1 = *l;
+	while (size--)
 	{
-		list = list->next;
-		ret++;
+		tmp2 = tmp1->next;
+		free(tmp1);
+		tmp1 = tmp2;
 	}
-	return (ret);
+	*l = NULL;
 }

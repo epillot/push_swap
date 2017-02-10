@@ -37,61 +37,6 @@ static int	find_good_pos(t_ll *l, int val)
 	return (pos);
 }
 
-static int	ll_go_to(t_ll **l, int pos_start, int pos_fin)
-{
-	int	diff;
-	int	size;
-
-	size = (*l)->size;
-	/*if (pos_start > size || pos_fin > size)
-	{
-		ft_printf("BAD INPUT pos_start: %d, pos_fin: %d for size: %d\n", pos_start, pos_fin, size);
-		exit(EXIT_FAILURE);
-	}*/
-	diff = pos_fin - pos_start;
-	if (ft_abs(diff) <= size / 2)
-	{
-		if (diff > 0)
-		{
-			while (diff--)
-			{
-				(*l) = (*l)->next;
-				ft_putendl("ra");
-			}
-		}
-		else
-		{
-			while (diff++)
-			{
-				(*l) = (*l)->prev;
-				ft_putendl("rra");
-			}
-		}
-	}
-	else
-	{
-		if (diff > 0)
-                {
-			diff = size - diff;
-                        while (diff--)
-                        {
-                                (*l) = (*l)->prev;
-                                ft_putendl("rra");
-                        }
-                }
-		else
-		{
-			diff = size + diff;
-			while (diff--)
-                        {
-                                (*l) = (*l)->next;
-                                ft_putendl("ra");
-                        }
-		}
-	}
-	return (pos_fin);
-}
-
 void	pu_sw_ins_sort(t_ll **la, t_ll **lb)
 {
 	int	i;

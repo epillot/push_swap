@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 13:34:42 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/08 19:56:14 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/10 12:53:54 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void    ll_swap(t_ll *l);
 void	ll_addfront(t_ll **l, t_ll *elem);
 void	ll_size_rec(t_ll *l, int new_size);
 int     l_is_sort(t_ll *l, int way);
+void	ll_free(t_ll **l);
+int		apply_all_sort(t_ll **la, t_ll **lb, t_list *cmd[]);
 void	exec_cmd(char *cmd, t_ll **la, t_ll **lb);
 void	exec_cmd_s(char *cmd, t_ll *la, t_ll *lb);
 void	exec_cmd_p(char *cmd, t_ll **la, t_ll **lb);
@@ -57,6 +59,7 @@ int		ll_go_to(t_ll **l, t_pos pos, char *list_name, t_list **cmd);
 void	add_cmd_in_list(char *str, char *list_name, t_list **list);
 t_list	*pu_sw_bubble_sort(t_ll *l);
 t_list	*pu_sw_sel_sort(t_ll **la, t_ll **lb);
-void	pu_sw_ins_sort(t_ll **la, t_ll **lb);
+t_list	*pu_sw_ins_sort(t_ll **la, t_ll **lb);
+t_list	*pu_sw_quick_sort(t_ll **la, t_ll **lb);
 
 #endif

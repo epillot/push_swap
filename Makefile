@@ -6,7 +6,7 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/04 16:40:08 by epillot           #+#    #+#              #
-#    Updated: 2017/02/08 20:00:45 by epillot          ###   ########.fr        #
+#    Updated: 2017/02/10 18:53:05 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRC_NAME =  init_la.c\
 			get_cmd_list.c\
 			exec_all.c\
 			ll_tools.c\
+			ll_free.c\
 			l_is_sort.c\
+			apply_all_sort.c\
 			exec_cmd.c\
 			exec_cmd_p.c\
 			exec_cmd_r.c\
@@ -32,6 +34,8 @@ SRC_NAME =  init_la.c\
 			add_cmd_in_list.c\
 			pu_sw_bubble_sort.c\
 			pu_sw_sel_sort.c\
+			pu_sw_ins_sort.c\
+			pu_sw_quick_sort.c\
 
 MAIN1_NAME = checker.c
 

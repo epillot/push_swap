@@ -6,13 +6,13 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 18:06:19 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/08 20:15:19 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/10 12:56:45 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bub_sort_next(t_ll *l, int size, t_list **cmd)
+static void	bub_sort_next(t_ll *l, int size, t_list **cmd)
 {
 	int		i;
 
@@ -31,7 +31,7 @@ void	bub_sort_next(t_ll *l, int size, t_list **cmd)
 	
 }
 
-void	bub_sort_prev(t_ll *l, int size, t_list **cmd)
+static void	bub_sort_prev(t_ll *l, int size, t_list **cmd)
 {
 	int		i;
 
@@ -49,7 +49,7 @@ void	bub_sort_prev(t_ll *l, int size, t_list **cmd)
 	}
 }
 
-t_list	*pu_sw_bubble_sort(t_ll *l)
+t_list		*pu_sw_bubble_sort(t_ll *l)
 {
 	int		size;
 	t_ll	*begin;

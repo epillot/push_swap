@@ -37,11 +37,32 @@ static int	find_good_pos(t_ll *l, int val)
 	return (pos);
 }
 
-static int	ll_go_to(t_ll **l, int pos_start, int pos_fin)
+static int      find_good_pos2(t_ll *l, int val)
+{
+        int pos;
+        int size;
+
+
+        pos = 1;
+        if (!l)
+                return (1);
+        size = l->size;
+        while (pos <= size && val < l->val)
+        {
+                l = l->next;
+                pos++;
+        }
+        return (pos);
+}
+
+
+int	ll_go_to(t_ll **l, int pos_start, int pos_fin, char c)
 {
 	int	diff;
 	int	size;
 
+	if (!*l)
+		return (1);
 	size = (*l)->size;
 	/*if (pos_start > size || pos_fin > size)
 	{
@@ -56,7 +77,7 @@ static int	ll_go_to(t_ll **l, int pos_start, int pos_fin)
 			while (diff--)
 			{
 				(*l) = (*l)->next;
-				ft_putendl("ra");
+				ft_printf("r%c\n", c);
 			}
 		}
 		else
@@ -64,7 +85,7 @@ static int	ll_go_to(t_ll **l, int pos_start, int pos_fin)
 			while (diff++)
 			{
 				(*l) = (*l)->prev;
-				ft_putendl("rra");
+				ft_printf("rr%c\n", c);
 			}
 		}
 	}
@@ -76,7 +97,7 @@ static int	ll_go_to(t_ll **l, int pos_start, int pos_fin)
                         while (diff--)
                         {
                                 (*l) = (*l)->prev;
-                                ft_putendl("rra");
+				ft_printf("rr%c\n", c);
                         }
                 }
 		else
@@ -85,7 +106,7 @@ static int	ll_go_to(t_ll **l, int pos_start, int pos_fin)
 			while (diff--)
                         {
                                 (*l) = (*l)->next;
-                                ft_putendl("ra");
+                                ft_printf("r%c\n", c);
                         }
 		}
 	}
@@ -96,32 +117,40 @@ void	pu_sw_ins_sort(t_ll **la, t_ll **lb)
 {
 	int	i;
 	int	size;
-	t_ll	*begin;
-	int	j;
+	t_ll	*begin, *begin2;
+	int	j, j2;
 
 	begin = *la;
 	size = (*la)->size;
 	j = 1;
+	j2 = 1;
+	begin2 = NULL;
 	while ((i = find_bad_elem(begin)))
 	{
-	//	ft_printf("bad en pos: %d, actuellement en pos: %d\n", i, j);
-		j = ll_go_to(la, j, i);
+		//ft_printf("bad en pos: %d, actuellement en pos: %d\n", i, j);
+		j = ll_go_to(la, j, i, 'a');
+		i = find_good_pos2(begin2, (*la)->val);
+		j2 = ll_go_to(lb, j2, i, 'b');
+		if (i == 1)
+			begin2 = *la;
 		exec_cmd_p("b", la, lb);
 		ft_putendl("pb");
 	}
-//	ll_go_to(la, j, 1);
 	size = 0;
 	if (*lb)
+	{
+		ll_go_to(lb, j2, 1, 'b');
 		size = (*lb)->size;
+	}
 	while (size--)
 	{
 		i = find_good_pos(begin, (*lb)->val);
 	//	ft_printf(" good pos: %d, actuellement en pos: %d\n", i, j);
-		j = ll_go_to(la, j, i);
+		j = ll_go_to(la, j, i, 'a');
 		if (i == 1)
 			begin = (*lb);
 		exec_cmd_p("a", la, lb);
                 ft_putendl("pa");
 	}
-	ll_go_to(la, j, 1);
+	ll_go_to(la, j, 1, 'a');
 }

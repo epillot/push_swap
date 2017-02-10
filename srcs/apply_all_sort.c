@@ -1,0 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   apply_all_sort.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/09 14:06:05 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/10 12:58:35 by epillot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+static int	*save_ll(t_ll *l)
+{
+	int		*out;
+	int		size;
+	int		i;
+
+	if (!l)
+		return (NULL);
+	size = l->size;
+	i = 0;
+	out = (int*)malloc(sizeof(int) * size);
+	while (size--)
+	{
+		out[i++] = l->val;
+		l = l->next;
+	}
+	return (out);
+
+}
+
+static void	load_ll(t_ll *l, int *tab)
+{
+	int		size;
+	
+	if (!l)
+		return ;
+	size = l->size;
+	while (size--)
+	{
+		l->val = *tab++;
+		l = l->next;
+	}
+}
+
+static int	get_best_sort(t_list *cmd[])
+{
+	int		i;
+	int		min;
+
+	i = 1;
+	min = 0;
+	while (i < 4)
+	{
+		if (ft_lst_size(cmd[i]) < ft_lst_size(cmd[min]))
+			min = i;
+		i++;
+	}
+	return (min);
+}
+
+int			apply_all_sort(t_ll **la, t_ll **lb, t_list *cmd[])
+{
+	int		*tab;
+	int		i;
+
+	tab = save_ll(*la);
+	cmd[0] = pu_sw_bubble_sort(*la);
+	load_ll(*la, tab);
+	cmd[1] = pu_sw_sel_sort(la, lb);
+	load_ll(*la, tab);
+	cmd[2] = pu_sw_ins_sort(la, lb);
+	load_ll(*la, tab);
+	cmd[3] = pu_sw_quick_sort(la, lb);
+	free(tab);
+	ll_free(la);
+	i = get_best_sort(cmd);
+	return (i);
+}
