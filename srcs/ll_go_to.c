@@ -16,7 +16,7 @@ static void	ll_go_to_ins(t_ll **l, int diff, char *str, t_list **cmd)
 {
 	if (diff > 0)
 	{
-		while (diff--)
+		while (diff-- > 0)
 		{
 			(*l) = (*l)->next;
 			add_cmd_in_list("r", str, cmd);
@@ -24,7 +24,7 @@ static void	ll_go_to_ins(t_ll **l, int diff, char *str, t_list **cmd)
 	}
 	else
 	{
-		while (diff++)
+		while (diff++ < 0)
 		{
 			(*l) = (*l)->prev;
 			add_cmd_in_list("rr", str, cmd);
@@ -40,7 +40,7 @@ static void	ll_go_to_out(t_ll **l, int diff, char *str, t_list **cmd)
 	if (diff > 0)
 	{
 		diff = size - diff;
-		while (diff--)
+		while (diff-- > 0)
 		{
 			(*l) = (*l)->prev;
 			add_cmd_in_list("rr", str, cmd);
@@ -49,7 +49,7 @@ static void	ll_go_to_out(t_ll **l, int diff, char *str, t_list **cmd)
 	else
 	{
 		diff = size + diff;
-		while (diff--)
+		while (diff-- > 0)
 		{
 			(*l) = (*l)->next;
 			add_cmd_in_list("r", str, cmd);

@@ -66,7 +66,6 @@ int			main(int ac, char **av)
 	}
 	ft_bzero(cmd, sizeof(cmd));
 	i = apply_all_sort(&la, &lb, cmd);
-	i = 3;
 	print_winner(i);
 	print_cmd(cmd[i]);
 	free_all_cmd(cmd);

@@ -46,13 +46,20 @@ static void	load_ll(t_ll *l, int *tab)
 	}
 }
 
-static int	get_best_sort(t_list *cmd[])
+static int	get_best_sort(int size, t_list *cmd[])
 {
 	int		i;
 	int		min;
 
 	i = 1;
 	min = 0;
+	if (size >= 200)
+		return (3);
+	else if (size >= 30)
+	{
+		min = 1;
+		i = 2;
+	}
 	while (i < 4)
 	{
 		if (ft_lst_size(cmd[i]) < ft_lst_size(cmd[min]))
@@ -68,15 +75,28 @@ int			apply_all_sort(t_ll **la, t_ll **lb, t_list *cmd[])
 	int		i;
 
 	tab = save_ll(*la);
-	cmd[0] = pu_sw_bubble_sort(*la);
-	load_ll(*la, tab);
-	cmd[1] = pu_sw_sel_sort(la, lb);
-	load_ll(*la, tab);
-	cmd[2] = pu_sw_ins_sort(la, lb);
-	load_ll(*la, tab);
-	cmd[3] = pu_sw_quick_sort(la, lb);
+	if ((*la)->size >= 200)
+		cmd[3] = pu_sw_quick_sort(la, lb);
+	else if ((*la)->size >= 30)
+	{
+		cmd[1] = pu_sw_sel_sort(la, lb);
+		load_ll(*la, tab);
+		cmd[2] = pu_sw_ins_sort(la, lb);
+		load_ll(*la, tab);
+		cmd[3] = pu_sw_quick_sort(la, lb);
+	}
+	else
+	{
+		cmd[0] = pu_sw_bubble_sort(*la);
+		load_ll(*la, tab);
+		cmd[1] = pu_sw_sel_sort(la, lb);
+		load_ll(*la, tab);
+		cmd[2] = pu_sw_ins_sort(la, lb);
+		load_ll(*la, tab);
+		cmd[3] = pu_sw_quick_sort(la, lb);
+	}
 	free(tab);
+	i = get_best_sort((*la)->size, cmd);
 	ll_free(la);
-	i = get_best_sort(cmd);
 	return (i);
 }

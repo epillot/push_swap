@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-/*static int	find_lower_elem(t_ll *l, int val, int size)
-{
-	
-}*/
-
 void		quick_sort_aux(t_ll **la, t_ll **lb, int size, t_list **cmd)
 {
 	t_ll	*piv;
