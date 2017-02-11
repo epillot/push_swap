@@ -6,7 +6,7 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/04 16:40:08 by epillot           #+#    #+#              #
-#    Updated: 2017/02/10 18:53:05 by epillot          ###   ########.fr        #
+#    Updated: 2017/02/11 18:53:10 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_NAME =  init_la.c\
 			pu_sw_bubble_sort.c\
 			pu_sw_sel_sort.c\
 			pu_sw_ins_sort.c\
+			pu_sw_ins_sort2.c\
 			pu_sw_quick_sort.c\
 
 MAIN1_NAME = checker.c

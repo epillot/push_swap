@@ -6,76 +6,82 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 12:42:20 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/10 19:57:11 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/11 19:14:06 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		partition(t_ll **la, t_ll **lb, t_pos pos, t_list **cmd)
+static int	find_lower_elem(t_ll *l, int val, int size)
 {
-	int		piv;
-	int		size;
-	t_pos	pos2;
+	int		pos;
 
-	size = pos.final - pos.start;
-	if (size <= 0)
-		return ;
-	pos2.start = 1;
-	pos2.final = pos.start;
-	ll_go_to(la, pos2, "a", cmd);
-	piv = (*la)->val;
-	exec_cmd_p("b", la, lb);
-	add_cmd_in_list("p", "b", cmd);
-	while (size--)
+	pos = 1;
+	while (pos <= size)
 	{
-		if ((*la)->val < piv)
-		{
-			exec_cmd_p("b", la, lb);
-			add_cmd_in_list("p", "b", cmd);
-		}
-		else
-		{
-			(*la) = (*la)->next;
-			add_cmd_in_list("r", "a", cmd);
-		}
+		if (l->val < val)
+			return (pos);
+		l = l->next;
+		pos++;
 	}
-	size = (*la)->size;
-	pos2.start = 1;
-	pos2.final = 1;
-	while (size--)
+	return (0);
+}
+
+static int	partition(t_ll **la, t_ll **lb, int size, t_list **cmd)
+{
+	t_ll	*piv;
+	t_pos	pos;
+	int		i;
+	t_ll	*tmp;
+	int		pos_piv;
+
+	pos_piv = piv = *la;
+	tmp = *la;
+	pos.start = 1;
+	while ((pos.final = find_lower_elem(tmp, piv->val, size)))
 	{
+		pos.start = ll_go_to(la, pos, "a", cmd);
 		exec_cmd_p("b", la, lb);
 		add_cmd_in_list("p", "b", cmd);
-		pos2.final++;
-
+		size--;
 	}
-	ll_go_to(lb, pos2, "b", cmd);
-	size = (*lb)->size;
-	while (size--)
+	i = 1;
+	pos.final = 1;
+	ll_go_to(la, pos, "a", cmd);
+	size = 0;
+	if (*lb)
+		size = (*lb)->size;
+	while (i++ <= size)
 	{
-		(*lb) = (*lb)->prev;
-		add_cmd_in_list("rr", "b", cmd);
 		exec_cmd_p("a", la, lb);
 		add_cmd_in_list("p", "a", cmd);
 	}
+	return (size);
 }
 
-void		quick_sort_aux(t_ll **la, t_ll **lb, t_list **cmd)
+void		quick_sort_aux(t_ll **la, t_ll **lb, int size, t_list **cmd)
 {
 	t_pos	pos;
+	int		size_in;
 
-	pos
+	if (size <= 1)
+		return ;
+	size_in = size;
+	size = partition(la, lb, size, cmd);
+	quick_sort_aux(la, lb, size, cmd);
+	pos.start = 1;
+	pos.final = size + 2;
+	pos.start = ll_go_to(la, pos, "a", cmd);
+	quick_sort_aux(la, lb, size_in - size - 1, cmd);
+	pos.final = 1;
+	ll_go_to(la, pos, "a", cmd);
 }
 
 t_list		*pu_sw_quick_sort(t_ll **la, t_ll **lb)
 {
 	t_list	*cmd;
-	t_pos	pos;
 
 	cmd = NULL;
-	pos.start = 1;
-	pos.final = (*la)->size;
-	partition(la, lb, pos, &cmd);
+	quick_sort_aux(la, lb, (*la)->size, &cmd);
 	return (cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 17:43:34 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/10 13:14:51 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/11 20:22:26 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	free_all_cmd(t_list *cmd[])
 	int		i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (cmd[i])
 			ft_lstdel(&cmd[i], &ft_lstfree_cnt);
@@ -43,6 +43,8 @@ static void	print_winner(int i)
 	else if (i == 2)
 		ft_putendl("insertion sort");
 	else if (i == 3)
+		ft_putendl("insertion sort2");
+	else if (i == 4)
 		ft_putendl("quick sort");
 }
 
@@ -50,7 +52,7 @@ int			main(int ac, char **av)
 {
 	t_ll	*la;
 	t_ll	*lb;
-	t_list	*cmd[4];
+	t_list	*cmd[5];
 	int		i;
 
 	ac--;
