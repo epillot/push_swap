@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 13:34:42 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/10 12:53:54 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/11 18:57:30 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	add_cmd_in_list(char *str, char *list_name, t_list **list);
 t_list	*pu_sw_bubble_sort(t_ll *l);
 t_list	*pu_sw_sel_sort(t_ll **la, t_ll **lb);
 t_list	*pu_sw_ins_sort(t_ll **la, t_ll **lb);
+t_list	*pu_sw_ins_sort2(t_ll **la, t_ll **lb);
 t_list	*pu_sw_quick_sort(t_ll **la, t_ll **lb);
 
 #endif
