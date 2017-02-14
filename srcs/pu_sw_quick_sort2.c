@@ -33,9 +33,8 @@ static int	partition(t_ll **la, t_ll **lb, int size, t_list **cmd)
 	t_pos	pos;
 	int		i;
 	t_ll	*tmp;
-	int		pos_piv;
 
-	pos_piv = piv = *la;
+	piv = *la;
 	tmp = *la;
 	pos.start = 1;
 	while ((pos.final = find_lower_elem(tmp, piv->val, size)))
@@ -77,11 +76,69 @@ void		quick_sort_aux(t_ll **la, t_ll **lb, int size, t_list **cmd)
 	ll_go_to(la, pos, "a", cmd);
 }
 
+/*static int      cmp(const void *elem1, const void *elem2)
+{
+        const int *t1 = elem1;
+        const int *t2 = elem2;
+
+        return (*t1 - *t2);
+}
+
+int     get_pivot(t_ll *l, int size)
+{
+        int             *tab;
+        int             i;
+        int     val;
+
+        i = 0;
+        tab = malloc(sizeof(int) * size);
+        while (i < size)
+        {
+                tab[i++] = l->val;
+                l = l->next;
+        }
+        qsort(tab, size, 4, &cmp);
+        val = tab[size / 2];
+        free(tab);
+        return (val);
+      i = 1;
+        while (++i < size)
+                ft_printf("%d ", tab[i]);
+        ft_putchar('\n');
+        while (l->val != val)
+        {
+                i++;
+                l = l->next;
+        }
+        *piv = l;
+        free(tab);
+        return (i);
+}
+
+int     find_pos_piv(t_ll *l, int val)
+{
+        int i;
+
+        i = 1;
+        if (!l)
+                return (0);
+        while (l->val != val)
+        {
+                i++;
+                l = l->next;
+        }
+        return (i);
+}*/
+
 t_list		*pu_sw_quick_sort(t_ll **la, t_ll **lb)
 {
 	t_list	*cmd;
 
 	cmd = NULL;
+/*	t_pos pos;
+	pos.start = 1;
+	pos.final = find_pos_piv(*la, get_pivot(*la, (*la)->size));
+	ll_go_to(la, pos, "a", &cmd);*/
 	quick_sort_aux(la, lb, (*la)->size, &cmd);
 	return (cmd);
 }

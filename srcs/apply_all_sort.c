@@ -54,7 +54,10 @@ static int	get_best_sort(int size, t_list *cmd[])
 	i = 1;
 	min = 0;
 	if (size >= 200)
-		return (4);
+	{
+		min = 2;
+		i = 3;
+	}
 	else if (size >= 30)
 	{
 		min = 1;
@@ -76,7 +79,13 @@ int			apply_all_sort(t_ll **la, t_ll **lb, t_list *cmd[])
 
 	tab = save_ll(*la);
 	if ((*la)->size >= 200)
+	{
+		cmd[2] = pu_sw_ins_sort(la, lb);
+		load_ll(*la, tab);
+		cmd[3] = pu_sw_sel_sort(la, lb);
+		load_ll(*la, tab);
 		cmd[4] = pu_sw_quick_sort(la, lb);
+	}
 	else if ((*la)->size >= 30)
 	{
 		cmd[1] = pu_sw_sel_sort(la, lb);

@@ -37,6 +37,8 @@ SRC_NAME =  init_la.c\
 			pu_sw_ins_sort.c\
 			pu_sw_ins_sort2.c\
 			pu_sw_quick_sort.c\
+			rev_sort_little.c\
+			little_sort.c
 
 MAIN1_NAME = checker.c
 

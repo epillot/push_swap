@@ -19,7 +19,7 @@ int			main(int ac, char **av)
 	t_list	*cmd;
 	t_psopt	opt;
 	int		i;
-	char	winner[20] = {0};
+	char	winner[500] = {0};
 
 	i = get_option_pu_sw(ac, av, &opt);
 	ac -= i;

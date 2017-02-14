@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	print_list(t_ll *l)
+void	print_list(t_ll *l)
 {
 	int		size;
 

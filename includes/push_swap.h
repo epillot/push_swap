@@ -62,5 +62,7 @@ t_list	*pu_sw_sel_sort(t_ll **la, t_ll **lb);
 t_list	*pu_sw_ins_sort(t_ll **la, t_ll **lb);
 t_list	*pu_sw_ins_sort2(t_ll **la, t_ll **lb);
 t_list	*pu_sw_quick_sort(t_ll **la, t_ll **lb);
+void	rev_sort_little(t_ll **lb, t_ll **la, t_list **cmd);
+void    little_sort(t_ll **la, t_ll **lb, int size, t_list **cmd);
 
 #endif

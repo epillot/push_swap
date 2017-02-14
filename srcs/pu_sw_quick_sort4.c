@@ -126,36 +126,9 @@ static int	partition(t_ll **la, t_ll **lb, int size, t_list **cmd)
 	return (i);
 }
 
-static int      find_ll_max(t_ll *l)
-{
-        int pos;
-	int pos_max;
-        int size;
-	t_ll *max;
-	
-	if (l->size == 1)
-		return (1);
-        pos = 2;
-	pos_max = 1;
-	max = l;
-	l = l->next;
-        size = l->size;
-        while (pos <= size)
-        {
-		if (l->val > max->val) 
-		{
-			pos_max = pos;
-			max = l;
-		}
-                l = l->next;
-                pos++;
-        }
-        return (pos_max);
-}
-
 void		quick_sort_aux(t_ll **la, t_ll **lb, int size, t_list **cmd)
 {
-	t_pos	pos;
+//	t_pos	pos;
 //	int		sizeb = 0;
 
 	if (size <= 1)
@@ -163,21 +136,6 @@ void		quick_sort_aux(t_ll **la, t_ll **lb, int size, t_list **cmd)
 	while ((*la)->size >= 3)
 	{
 		partition(la, lb, size, cmd);
-	}
-	if ((*la)->val > (*la)->next->val)
-	{
-		ll_swap(*la);
-		add_cmd_in_list("s", "a", cmd);
-	}
-	size = (*lb)->size;
-	pos.start = 1;
-	while (size--)
-	{
-		pos.final = find_ll_max((*lb));
-		ll_go_to(lb, pos, "b", cmd);
-		exec_cmd_p("a", la, lb);
-		add_cmd_in_list("p", "a", cmd);
-		
 	}
 	/*	quick_sort_aux(la, lb, size - 1, cmd);
 		pos.start = 1;
