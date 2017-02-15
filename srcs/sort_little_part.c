@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pu_sw_ins_sort.c                                   :+:      :+:    :+:   */
+/*   sort_little_part.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 12:31:20 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 17:19:45 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/15 16:29:57 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/15 17:23:36 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	find_bad_elem(t_ll *l)
+static int	find_bad_elem(t_ll *l, int size)
 {
-	int	size;
 	int	i;
 
 	if (!l)
 		return (0);
 	i = 1;
-	size = l->size;
-	while (i < size && l->val <= l->next->val)
+	while (i < size && l->val < l->next->val)
 	{
 		l = l->next;
 		i++;
@@ -34,13 +32,11 @@ static int	find_bad_elem(t_ll *l)
 static int	find_good_pos(t_ll *l, int val)
 {
 	int pos;
-	int size;
 
 	pos = 1;
 	if (!l)
 		return (1);
-	size = l->size;
-	while (pos <= size && val >= l->val)
+	while (val >= l->val)
 	{
 		l = l->next;
 		pos++;
@@ -48,18 +44,23 @@ static int	find_good_pos(t_ll *l, int val)
 	return (pos);
 }
 
-static void	insert_in_a(t_ll **la, t_ll **lb, t_list **cmd)
+void		sort_little_part(t_ll **la, t_ll **lb, int size, t_list **cmd)
 {
-	t_pos	pos;
-	int		size;
 	t_ll	*begin;
+	t_pos	pos;
+	int		i;
 
-	if (!*lb)
-		return ;
-	pos.start = 1;
-	size = (*lb)->size;
+	i = 0;
 	begin = *la;
-	while (size--)
+	pos.start = 1;
+	while ((pos.final = find_bad_elem(begin, size - i)))
+	{
+		pos.start = ll_go_to(la, pos, "a", cmd);
+		exec_cmd("pb", la, lb);
+		add_cmd_in_list("p", "b", cmd);
+		i++;
+	}
+	while (i--)
 	{
 		pos.final = find_good_pos(begin, (*lb)->val);
 		pos.start = ll_go_to(la, pos, "a", cmd);
@@ -70,27 +71,4 @@ static void	insert_in_a(t_ll **la, t_ll **lb, t_list **cmd)
 	}
 	pos.final = 1;
 	ll_go_to(la, pos, "a", cmd);
-}
-
-t_list		*pu_sw_ins_sort(t_ll **la, t_ll **lb)
-{
-	int		size;
-	t_ll	*begin;
-	t_pos	pos;
-	t_list	*cmd;
-
-	cmd = NULL;
-	begin = *la;
-	size = (*la)->size;
-	pos.start = 1;
-	while ((pos.final = find_bad_elem(begin)))
-	{
-		pos.start = ll_go_to(la, pos, "a", &cmd);
-		exec_cmd("pb", la, lb);
-		add_cmd_in_list("p", "b", &cmd);
-	}
-	pos.final = 1;
-	ll_go_to(la, pos, "a", &cmd);
-	insert_in_a(la, lb, &cmd);
-	return (cmd);
 }

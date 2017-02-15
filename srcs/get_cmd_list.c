@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 14:44:08 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 14:39:48 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:39:45 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int			get_cmd_list(t_list **cmd_list)
 	char	cmd[4];
 	int		i;
 
-	*cmd_list = NULL;
 	i = 0;
 	while ((read(0, &buf, 1)) && i < 4)
 	{

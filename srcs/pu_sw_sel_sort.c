@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:22:45 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 12:31:56 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:29:01 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_list		*pu_sw_sel_sort(t_ll **la, t_ll **lb)
 	{
 		pos.final = find_ll_min(*la);
 		ll_go_to(la, pos, "a", &cmd);
-		exec_cmd_p("b", la, lb);
+		exec_cmd("pb", la, lb);
 		add_cmd_in_list("p", "b", &cmd);
 		size--;
 	}
@@ -58,7 +58,7 @@ t_list		*pu_sw_sel_sort(t_ll **la, t_ll **lb)
 		size = (*lb)->size;
 	while (size--)
 	{
-		exec_cmd_p("a", la, lb);
+		exec_cmd("pa", la, lb);
 		add_cmd_in_list("p", "a", &cmd);
 	}
 	return (cmd);

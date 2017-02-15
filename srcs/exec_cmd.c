@@ -6,20 +6,91 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 18:45:56 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/02 16:44:15 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 18:27:29 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	exec_cmd(char *cmd, t_ll **la, t_ll **lb)
+static void	do_rotate(char *cmd, t_ll **la, t_ll **lb)
+{
+	if (*cmd == 'a')
+	{
+		if (*la)
+			*la = (*la)->next;
+	}
+	else if (*cmd == 'b')
+	{
+		if (*lb)
+			*lb = (*lb)->next;
+	}
+	else
+	{
+		if (*la)
+			*la = (*la)->next;
+		if (*lb)
+			*lb = (*lb)->next;
+	}
+}
+
+static void	do_rev_rotate(char *cmd, t_ll **la, t_ll **lb)
+{
+	if (*cmd == 'a')
+	{
+		if (*la)
+			*la = (*la)->prev;
+	}
+	else if (*cmd == 'b')
+	{
+		if (*lb)
+			*lb = (*lb)->prev;
+	}
+	else
+	{
+		if (*la)
+			*la = (*la)->prev;
+		if (*lb)
+			*lb = (*lb)->prev;
+	}
+}
+
+static void	do_swap(char *cmd, t_ll *la, t_ll *lb)
+{
+	if (*cmd == 'a')
+	{
+		if (la)
+			ll_swap(la);
+	}
+	else if (*cmd == 'b')
+	{
+		if (lb)
+			ll_swap(lb);
+	}
+	else
+	{
+		if (la)
+			ll_swap(la);
+		if (lb)
+			ll_swap(lb);
+	}
+}
+
+static void	do_push(char *cmd, t_ll **la, t_ll **lb)
+{
+	if (*cmd == 'a')
+		push_elem(la, lb);
+	else
+		push_elem(lb, la);
+}
+
+void		exec_cmd(char *cmd, t_ll **la, t_ll **lb)
 {
 	if (*cmd == 's')
-		exec_cmd_s(cmd + 1, *la, *lb);
+		do_swap(cmd + 1, *la, *lb);
 	else if (*cmd == 'p')
-		exec_cmd_p(cmd + 1, la, lb);
+		do_push(cmd + 1, la, lb);
 	else if (ft_strlen(cmd) == 2 && *cmd == 'r')
-		exec_cmd_r(cmd + 1, la, lb);
+		do_rotate(cmd + 1, la, lb);
 	else
-		exec_cmd_rr(cmd + 2, la, lb);
+		do_rev_rotate(cmd + 2, la, lb);
 }

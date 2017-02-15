@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 17:58:44 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 14:03:47 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:52:03 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_int(char *param, int neg)
 {
 	char	*limit;
-	
+
 	if (param[10 + neg] != '\0')
 		return (0);
 	limit = (neg == 0 ? ft_itoa(INT_MAX) : ft_itoa(INT_MIN));
@@ -65,11 +65,25 @@ static void	free_param(char **param)
 	free(param);
 }
 
+static int	add_elem(t_ll **la, char *param)
+{
+	t_ll	*elem;
+
+	if ((nb_parser(param)))
+		elem = ll_new(ft_atoi(param));
+	else
+		return (0);
+	if (*la)
+		ll_addback(*la, elem);
+	else
+		*la = elem;
+	return (1);
+}
+
 int			init_la(int ac, char **av, t_ll **la)
 {
 	int		i;
 	int		j;
-	t_ll	*elem;
 	char	**param;
 
 	i = 0;
@@ -82,14 +96,8 @@ int			init_la(int ac, char **av, t_ll **la)
 			return (0);
 		while (param[j])
 		{
-			if ((nb_parser(param[j])))
-				elem = ll_new(ft_atoi(param[j]));
-			else
+			if (!(add_elem(la, param[j])))
 				return (0);
-			if (*la)
-				ll_addback(*la, elem);
-			else
-				*la = elem;
 			j++;
 		}
 		free_param(param);

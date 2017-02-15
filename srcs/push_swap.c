@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 17:43:34 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/11 20:22:26 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 18:43:52 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,6 @@ static void	free_all_cmd(t_list *cmd[])
 	}
 }
 
-static void	print_winner(int i)
-{
-	if (i == 0)
-		ft_putendl("bubble sort");
-	else if (i == 1)
-		ft_putendl("selection sort");
-	else if (i == 2)
-		ft_putendl("insertion sort");
-	else if (i == 3)
-		ft_putendl("insertion sort2");
-	else if (i == 4)
-		ft_putendl("quick sort");
-}
-
 int			main(int ac, char **av)
 {
 	t_ll	*la;
@@ -67,8 +53,7 @@ int			main(int ac, char **av)
 		return (1);
 	}
 	ft_bzero(cmd, sizeof(cmd));
-	i = apply_all_sort(&la, &lb, cmd);
-	print_winner(i);
+	i = find_best_sort(&la, &lb, cmd);
 	print_cmd(cmd[i]);
 	free_all_cmd(cmd);
 	return (0);

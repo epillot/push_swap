@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ll_free.c                                          :+:      :+:    :+:   */
+/*   find_lower_elem.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 12:37:15 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 18:50:42 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/15 15:15:53 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/15 15:16:21 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ll_free(t_ll **l)
+int	find_lower_elem(t_ll *l, int val, int size)
 {
-	t_ll	*tmp1;
-	t_ll	*tmp2;
-	int		size;
+	int		pos;
 
-	if (!*l)
-		return ;
-	size = (*l)->size;
-	tmp1 = *l;
-	while (size--)
+	pos = 1;
+	while (pos <= size)
 	{
-		tmp2 = tmp1->next;
-		free(tmp1);
-		tmp1 = tmp2;
+		if (l->val <= val)
+			return (pos);
+		l = l->next;
+		pos++;
 	}
-	*l = NULL;
+	return (0);
 }

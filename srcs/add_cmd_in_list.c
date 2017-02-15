@@ -6,13 +6,13 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 18:57:32 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 19:03:53 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:15:30 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_usefull(char *cmd_prev, char *cmd)
+static int	is_usefull1(char *cmd_prev, char *cmd)
 {
 	if (ft_strcmp(cmd_prev, "ra") == 0)
 	{
@@ -35,6 +35,11 @@ static int	is_usefull(char *cmd_prev, char *cmd)
 		else
 			return (1);
 	}
+	return (0);
+}
+
+static int	is_usefull2(char *cmd_prev, char *cmd)
+{
 	if (ft_strcmp(cmd_prev, "rrb") == 0)
 	{
 		if (ft_strcmp(cmd, "rb") == 0)
@@ -56,7 +61,31 @@ static int	is_usefull(char *cmd_prev, char *cmd)
 		else
 			return (1);
 	}
-	return (1);
+	return (0);
+}
+
+static int	is_usefull(char *cmd_prev, char *cmd)
+{
+	if (ft_strcmp(cmd_prev, "sa") == 0 || ft_strcmp(cmd_prev, "sb") == 0)
+		return (1);
+	if (is_usefull1(cmd_prev, cmd))
+		return (1);
+	if (is_usefull2(cmd_prev, cmd))
+		return (1);
+	return (0);
+}
+
+static void	remove_cmd(t_list **list, t_list *cmd_prev, t_list **cmd1,
+		t_list **cmd2)
+{
+	if (cmd_prev)
+	{
+		ft_lstdelone(cmd1, &ft_lstfree_cnt);
+		cmd_prev->next = NULL;
+	}
+	else
+		ft_lstdelone(list, &ft_lstfree_cnt);
+	ft_lstdelone(cmd2, &ft_lstfree_cnt);
 }
 
 void		add_cmd_in_list(char *str, char *list_name, t_list **list)
@@ -82,17 +111,7 @@ void		add_cmd_in_list(char *str, char *list_name, t_list **list)
 		if ((is_usefull((char*)tmp1->content, (char*)new->content)))
 			tmp1->next = new;
 		else
-		{
-			if (tmp2)
-			{
-				ft_lstdelone(&tmp1, &ft_lstfree_cnt);
-				tmp2->next = NULL;
-			}
-			else
-				ft_lstdelone(list, &ft_lstfree_cnt);
-			ft_lstdelone(&new, &ft_lstfree_cnt);
-		}
-
+			remove_cmd(list, tmp2, &tmp1, &new);
 	}
 	else
 		*list = new;

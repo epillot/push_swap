@@ -6,13 +6,20 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 13:25:19 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/08 17:07:36 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:42:37 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_option_pu_sw(int ac, char **av, t_psopt *opt)
+static void	pu_sw_usage(char c)
+{
+	ft_printf_fd(2, "checker: illegal option -- %c\n", c);
+	ft_printf_fd(2, "usage: checker [-nv] [arg ...]\n");
+	exit(EXIT_FAILURE);
+}
+
+int			get_option_pu_sw(int ac, char **av, t_psopt *opt)
 {
 	int		i;
 	int		j;
@@ -31,11 +38,7 @@ int		get_option_pu_sw(int ac, char **av, t_psopt *opt)
 			else if (av[i][j] == 'n')
 				opt->n = 1;
 			else
-			{
-				ft_printf_fd(2, "checker: illegal option -- %c\n", av[i][j]);
-				ft_printf_fd(2, "usage: checker [-nv] [arg ...]\n");
-				exit(EXIT_FAILURE);
-			}
+				pu_sw_usage(av[i][j]);
 			j++;
 		}
 		i++;

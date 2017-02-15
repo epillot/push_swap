@@ -6,13 +6,13 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 15:29:15 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 14:39:24 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 18:36:15 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_list(t_ll *l)
+static void	print_list(t_ll *l)
 {
 	int		size;
 
@@ -32,7 +32,17 @@ void	print_list(t_ll *l)
 	ft_putchar('\n');
 }
 
-void	exec_all(t_list *cmd_list, t_ll **la, t_ll **lb, t_psopt opt)
+static void	display_cmd(t_ll *la, t_ll *lb, int i, char *cmd)
+{
+	ft_printf("-------cmd %d: %s-------\n", i, cmd);
+	ft_putstr("list a: ");
+	print_list(la);
+	ft_putstr("list b: ");
+	print_list(lb);
+	ft_putchar('\n');
+}
+
+void		exec_all(t_list *cmd_list, t_ll **la, t_ll **lb, t_psopt opt)
 {
 	int		i;
 
@@ -46,17 +56,9 @@ void	exec_all(t_list *cmd_list, t_ll **la, t_ll **lb, t_psopt opt)
 	while (cmd_list)
 	{
 		i++;
-		if (opt.v)
-			ft_printf("-------cmd %d: %s-------\n", i, (char*)cmd_list->content);
 		exec_cmd((char*)cmd_list->content, la, lb);
 		if (opt.v)
-		{
-			ft_putstr("list a: ");
-			print_list(*la);
-			ft_putstr("list b: ");
-			print_list(*lb);
-			ft_putchar('\n');
-		}
+			display_cmd(*la, *lb, i, (char*)cmd_list->content);
 		cmd_list = cmd_list->next;
 	}
 	if (opt.n)

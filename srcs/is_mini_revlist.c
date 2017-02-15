@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ll_free.c                                          :+:      :+:    :+:   */
+/*   is_mini_revlist.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/09 12:37:15 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 18:50:42 by epillot          ###   ########.fr       */
+/*   Created: 2017/02/15 17:56:07 by epillot           #+#    #+#             */
+/*   Updated: 2017/02/15 18:02:44 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ll_free(t_ll **l)
+int		is_mini_revlist(t_ll *l)
 {
-	t_ll	*tmp1;
-	t_ll	*tmp2;
-	int		size;
-
-	if (!*l)
-		return ;
-	size = (*l)->size;
-	tmp1 = *l;
-	while (size--)
+	if (l->size != 3)
+		return (0);
+	if (l->val > l->next->val)
 	{
-		tmp2 = tmp1->next;
-		free(tmp1);
-		tmp1 = tmp2;
+		if (l->next->val > l->next->next->val)
+			return (1);
 	}
-	*l = NULL;
+	return (0);
 }

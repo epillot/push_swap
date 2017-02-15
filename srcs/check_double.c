@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 16:05:08 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/03 16:31:21 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 16:37:05 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		check_double(t_ll *l)
 	int		size2;
 	t_ll	*tmp;
 	int		val;
-	int 	i;
+	int		i;
 
 	if (!l)
 		return (0);

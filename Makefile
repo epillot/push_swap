@@ -6,7 +6,7 @@
 #    By: epillot <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/04 16:40:08 by epillot           #+#    #+#              #
-#    Updated: 2017/02/11 18:53:10 by epillot          ###   ########.fr        #
+#    Updated: 2017/02/15 17:57:32 by epillot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,21 +24,21 @@ SRC_NAME =  init_la.c\
 			ll_tools.c\
 			ll_free.c\
 			l_is_sort.c\
-			apply_all_sort.c\
+			push_elem.c\
+			find_best_sort.c\
+			apply_good_sort.c\
 			exec_cmd.c\
-			exec_cmd_p.c\
-			exec_cmd_r.c\
-			exec_cmd_rr.c\
-			exec_cmd_s.c\
 			ll_go_to.c\
 			add_cmd_in_list.c\
+			is_mini_revlist.c\
+			get_median.c\
+			find_lower_elem.c\
 			pu_sw_bubble_sort.c\
 			pu_sw_sel_sort.c\
 			pu_sw_ins_sort.c\
-			pu_sw_ins_sort2.c\
-			pu_sw_quick_sort.c\
-			rev_sort_little.c\
-			little_sort.c
+			quick_sort_medium.c\
+			quick_sort_large.c\
+			sort_little_part.c
 
 MAIN1_NAME = checker.c
 

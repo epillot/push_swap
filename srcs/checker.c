@@ -6,11 +6,19 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 16:04:36 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/09 14:55:44 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/15 18:51:00 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	free_all(t_ll **la, t_ll **lb, t_list **cmd)
+{
+	ll_free(la);
+	ll_free(lb);
+	if (*cmd)
+		ft_lstdel(cmd, &ft_lstfree_cnt);
+}
 
 int			main(int ac, char **av)
 {
@@ -19,7 +27,6 @@ int			main(int ac, char **av)
 	t_list	*cmd;
 	t_psopt	opt;
 	int		i;
-	char	winner[500] = {0};
 
 	i = get_option_pu_sw(ac, av, &opt);
 	ac -= i;
@@ -33,20 +40,11 @@ int			main(int ac, char **av)
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	i = 0;
-	while (1)
-	{
-		read(0, &winner[i], 1);
-		if (winner[i] == '\n')
-			break ;
-		i++;
-	}
-	winner[i] = '\0';
+	cmd = NULL;
 	if (!(get_cmd_list(&cmd)))
 		return (1);
 	exec_all(cmd, &la, &lb, opt);
-	if (opt.n)
-		ft_printf("%s win\n", winner);
 	ft_putendl(l_is_sort(la, 0) && !lb ? "OK" : "KO");
+	free_all(&la, &lb, &cmd);
 	return (0);
 }
