@@ -152,9 +152,10 @@ OBJ_PATH = obj/
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 			
 $(NAME): $(OBJ)
+	@echo "\033[35mmaking $(NAME)...\033[0m"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "$(NAME) created"
+	@echo "\033[32mdone\033[0m"
 
 all: $(NAME)
 
@@ -192,10 +193,10 @@ $(OBJ_PATH)%.o: $(SRC_OUT_PATH)%.c
 
 clean:
 	@/bin/rm -f $(OBJ)
-	@echo "obj cleaned"
+	@echo "\033[34mlibft obj \033[32mcleaned\033[0m"
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@echo "$(NAME) removed"
+	@echo "\033[34m$(NAME) \033[32mremoved\033[0m"
 
 re: fclean all

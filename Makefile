@@ -58,25 +58,38 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
 INC = ./includes/
 
+LIB_NAME = libft.a
+
+LIB_PATH = libft/
+
+LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
+
 all: $(NAME1) $(NAME2)
 
-$(NAME1): $(OBJ) $(MAIN1_OBJ)
-	@make -C libft/
-	gcc $(FLAG) -o $(NAME1) $(OBJ) $(MAIN1_OBJ) -I $(INC) -L ./libft/ -lft
+$(LIB):
+	@make -C $(LIB_PATH)
+
+$(NAME1): $(LIB) $(OBJ) $(MAIN1_OBJ)
+	@echo "\033[35mmaking $(NAME1)...\033[0m"
+	@gcc $(FLAG) -o $(NAME1) $(OBJ) $(MAIN1_OBJ) -I $(INC) -L ./libft/ -lft
+	@echo "\033[32mdone\033[0m"
 	
-$(NAME2): $(OBJ) $(MAIN2_OBJ)
-	@make -C libft/
-	gcc $(FLAG) -o $(NAME2) $(OBJ) $(MAIN2_OBJ) -I $(INC) -L ./libft/ -lft
+$(NAME2): $(LIB) $(OBJ) $(MAIN2_OBJ)
+	@echo "\033[35mmaking $(NAME2)...\033[0m"
+	@gcc $(FLAG) -o $(NAME2) $(OBJ) $(MAIN2_OBJ) -I $(INC) -L ./libft/ -lft
+	@echo "\033[32mdone\033[0m"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p obj
-	gcc $(FLAG) -c -I $(INC) $< -o $@
+	@gcc $(FLAG) -c -I $(INC) $< -o $@
 
 clean:
 	@make fclean -C libft/
-	/bin/rm -f $(OBJ) $(MAIN2_OBJ) $(MAIN1_OBJ)
+	@/bin/rm -f $(OBJ) $(MAIN2_OBJ) $(MAIN1_OBJ)
+	@echo "\033[34mobj \033[32mcleaned\033[0m"
 
 fclean: clean
-	/bin/rm -f $(NAME1) $(NAME2)
+	@/bin/rm -f $(NAME1) $(NAME2)
+	@echo "\033[34m$(NAME1) \033[32mremoved\n\033[34m$(NAME2) \033[32mremoved\033[0m"
 
 re: fclean all
