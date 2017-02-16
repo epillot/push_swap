@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 17:38:22 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 18:10:32 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/16 15:35:41 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,9 @@ static void		load_ll(t_ll *l, int *tab)
 	}
 }
 
-static t_list	*sort_mini_revlist(void)
-{
-	t_list	*cmd;
-
-	cmd = NULL;
-	add_cmd_in_list("s", "a", &cmd);
-	add_cmd_in_list("rr", "a", &cmd);
-	return (cmd);
-}
-
 void			apply_good_sort(t_ll **la, t_ll **lb, int *tab, t_list *cmd[])
 {
-	if (is_mini_revlist(*la))
-		cmd[4] = sort_mini_revlist();
-	else if ((*la)->size >= 300)
+	if ((*la)->size >= 300)
 		cmd[4] = quick_sort_large(la, lb);
 	else if ((*la)->size >= 100)
 	{

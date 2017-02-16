@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 17:22:45 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 16:29:01 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/16 12:39:49 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ static int	find_ll_min(t_ll *l)
 	return (pos_min);
 }
 
+static void	check_swap(t_ll *l, int size, t_list **cmd)
+{
+	if (size != 3)
+		return ;
+	if (l->val > l->next->val)
+	{
+		ll_swap(l);
+		add_cmd_in_list("s", "a", cmd);
+	}
+}
+
 t_list		*pu_sw_sel_sort(t_ll **la, t_ll **lb)
 {
 	t_pos	pos;
@@ -44,6 +55,7 @@ t_list		*pu_sw_sel_sort(t_ll **la, t_ll **lb)
 
 	cmd = NULL;
 	size = (*la)->size;
+	check_swap(*la, size, &cmd);
 	pos.start = 1;
 	while (size > 1)
 	{

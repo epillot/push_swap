@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:14:51 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 14:42:54 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/16 15:36:48 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int			get_median(t_ll *l, int size)
 	int		median;
 
 	i = 0;
-	tab = malloc(sizeof(int) * size);
+	if (!(tab = malloc(sizeof(int) * size)))
+		exit(EXIT_FAILURE);
 	while (i < size)
 	{
 		tab[i++] = l->val;

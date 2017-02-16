@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 17:58:44 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 16:52:03 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/16 15:35:33 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	nb_parser(char *param)
 	int		neg;
 
 	neg = 0;
-	if (param[0] == '-')
+	if (param[0] == '-' && ft_isdigit(param[1]))
 		neg = 1;
 	i = 0;
 	while (param[i + neg] && i < 10)

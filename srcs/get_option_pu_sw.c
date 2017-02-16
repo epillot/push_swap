@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 13:25:19 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 16:42:37 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/16 15:24:53 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int			get_option_pu_sw(int ac, char **av, t_psopt *opt)
 
 	i = 1;
 	ft_bzero(opt, sizeof(t_psopt));
-	while (i < ac && av[i][0] == '-' && av[i][1])
+	while (i < ac && av[i][0] == '-')// && av[i][1])
 	{
+		if (!av[i][1] || ft_isdigit(av[i][1]))
+			return (i);
 		j = 1;
 		if (av[i][1] == '-' && !av[i][2])
 			return (i + 1);

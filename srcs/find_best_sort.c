@@ -6,7 +6,7 @@
 /*   By: epillot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 18:00:01 by epillot           #+#    #+#             */
-/*   Updated: 2017/02/15 18:37:48 by epillot          ###   ########.fr       */
+/*   Updated: 2017/02/16 15:36:20 by epillot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	*save_ll(t_ll *l)
 		return (NULL);
 	size = l->size;
 	i = 0;
-	out = (int*)malloc(sizeof(int) * size);
+	if (!(out = (int*)malloc(sizeof(int) * size)))
+		exit(EXIT_FAILURE);
 	while (size--)
 	{
 		out[i++] = l->val;
@@ -31,14 +32,14 @@ static int	*save_ll(t_ll *l)
 	return (out);
 }
 
-static int	get_best_sort(t_ll *la, int size, t_list *cmd[])
+static int	get_best_sort(int size, t_list *cmd[])
 {
 	int		i;
 	int		min;
 
 	i = 1;
 	min = 0;
-	if (is_mini_revlist(la) || size >= 300)
+	if (size >= 300)
 		return (4);
 	else if (size >= 100)
 	{
@@ -62,7 +63,7 @@ int			find_best_sort(t_ll **la, t_ll **lb, t_list *cmd[])
 	tab = save_ll(*la);
 	apply_good_sort(la, lb, tab, cmd);
 	free(tab);
-	i = get_best_sort(*la, (*la)->size, cmd);
+	i = get_best_sort((*la)->size, cmd);
 	ll_free(la);
 	return (i);
 }
