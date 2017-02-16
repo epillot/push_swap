@@ -34,10 +34,11 @@ static void	print_list(t_ll *l)
 
 static void	display_cmd(t_ll *la, t_ll *lb, int i, char *cmd)
 {
-	ft_printf("-------cmd %d: %s-------\n", i, cmd);
-	ft_putstr("list a: ");
+	ft_printf("%s-----command %d:", C_CYAN, i);
+	ft_printf("%s %s%s\n", C_RED, cmd, C_NONE);
+	ft_printf("%slist a: %s", C_YELLOW, C_NONE);
 	print_list(la);
-	ft_putstr("list b: ");
+	ft_printf("%slist b: %s", C_YELLOW, C_NONE);
 	print_list(lb);
 	ft_putchar('\n');
 }
@@ -49,8 +50,10 @@ void		exec_all(t_list *cmd_list, t_ll **la, t_ll **lb, t_psopt opt)
 	i = 0;
 	if (opt.v)
 	{
-		ft_putstr("initial list: ");
+		ft_printf("%sinitial list: ", C_YELLOW);
+		ft_putstr(C_GREEN);
 		print_list(*la);
+		ft_putstr(C_NONE);
 		ft_putchar('\n');
 	}
 	while (cmd_list)
@@ -62,5 +65,5 @@ void		exec_all(t_list *cmd_list, t_ll **la, t_ll **lb, t_psopt opt)
 		cmd_list = cmd_list->next;
 	}
 	if (opt.n)
-		ft_printf("push_swap send a programm with %d instructuons\n", i);
+		ft_printf("push_swap send a programm with %d instructions\n", i);
 }
